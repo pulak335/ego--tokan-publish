@@ -9,13 +9,17 @@ body {
   padding: 0;
   /* scrollbar-color: linear-gradient(106.22deg, #C15CFF -41.18%, #0085FF 81.41%); */
 }
+
 /* #0085FF  #C15CFF */
 body::-webkit-scrollbar {
   max-width: 1px;
+  height: 0.1px;
 }
+
 .row {
   margin-right: 0px !important;
 }
+
 body::-webkit-scrollbar-track {
   background: linear-gradient(106.22deg, #0085ff -41.18%, #c15cff 81.41%);
 }
@@ -50,6 +54,7 @@ body::-webkit-scrollbar-thumb {
     padding: 0;
     max-width: 100%;
   }
+
   .graph-heading {
     font-size: 22px;
   }
