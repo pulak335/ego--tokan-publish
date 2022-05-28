@@ -1,52 +1,62 @@
-import React,{useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Navber from '../../common/Navber';
 import './Header.css';
 // import Clock from '../../common/Clock';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+// import bdd from "../../../../assets/bg-imgae/bd.png"
 
 
 
 const Header = () => {
-    const [trading, setTrading] = useState('Open')
+    const [trading, setTrading] = useState('')
 
+    let date = new Date()
 
-        useEffect(() => {
+    const days = date.getDay()
+
+    useEffect(() => {
+        if (days !== 6 || days !== 7) {
+            setTrading('Close')
+        }
+        else {
             setInterval(() => {
                 let date = new Date()
-                const Hours = new Date(date.toLocaleString('en-US',{
-                timeZone: 'America/New_York',
-                hour12: false,
-                hour: '2-digit'
-                }));
+                let Hours = date.getHours()
+                console.log(Hours)
 
-                if ( Hours >= 9 && Hours <= 16) {
-                setTrading('Open')
+                if (Hours >= 9 && Hours < 18) {
+                    setTrading('Open')
                 }
-                else{
-                setTrading('Close')
+                else {
+                    setTrading('Close')
                 }
 
             }, 1000);
+        }
     }, []);
 
-        useEffect(() => {
-    
-    AOS.init({duration:3000});
+    useEffect(() => {
 
-}, [])
+        AOS.init({ duration: 3000 });
+
+    }, [])
 
     return (
         <div className='header-bg'>
+            {/* <div className="imgD">
+                <img src={bdd} alt="yes" />
+            </div> */}
             <div className="container">
                 <div className="header-container">
-                        <Navber/> 
-                        
+
+                    <Navber />
+
                     <div className="header-title ">
                         <h2 className='trading-text'>Trading {trading} </h2>
 
-                        <h1>A decentralized,<br/> <span>self-sustaining financial</span> organization </h1>
+                        <h1>A decentralized,<br /> <span>self-sustaining financial</span> organization </h1>
                         <h3>focused on securing investors’ financial freedom. </h3>
                         <div className='d-flex justify-content-center'>
                             <a href='https://ego-1.gitbook.io/ego/' target="_blank" className='btn-base'>Knowledge Base</a>

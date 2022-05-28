@@ -9,7 +9,6 @@ import Treding3 from "../../../../assets/cripto-walltet-icon/Ellipse 016.png";
 import Treding4 from "../../../../assets/cripto-walltet-icon/Ellipse 017.png";
 import Treding5 from "../../../../assets/cripto-walltet-icon/Ellipse 018.png";
 import Chartgraph from "../../common/Chartgraph";
-// import Clock from '../../common/Clock';
 
 const Breakdown = () => {
 
@@ -33,20 +32,23 @@ const Breakdown = () => {
         second: '2-digit',
       }));
 
-      const Hours = new Date(date.toLocaleString('en-US', {
-        timeZone: 'America/New_York',
-        hour12: false,
-        hour: '2-digit'
-      }));
 
-      if (Hours >= 9 && Hours <= 16) {
+      let Hours = date.getHours()
+      let days = date.getDay()
+
+      if (days == 6 || days == 7) {
+        setTrading(false)
+      }
+      else {
+      if (Hours >= 9 && Hours < 17) {
         setTrading(true)
       }
       else {
         setTrading(false)
       }
-
+      }
     }, 1000);
+
   }, []);
 
 
@@ -99,7 +101,7 @@ const Breakdown = () => {
                     <div className="col-12 col-lg-6 col-md-6 col-sm-12 time-box-all time-box-size">
                       <h5 className="local-text-time-2">EST TIME</h5>
                       <div
-                        className={`time-box ${trading ? "green-text" : "red-text"}`}
+                        className={`time-box ${!trading ? "red-text" : "green-text"}`}
                       >
                         {SecState}
                       </div>
@@ -108,7 +110,7 @@ const Breakdown = () => {
                     <div className="col-12 col-lg-6 col-md-6 col-sm-12 mr-5 time-box-size">
                       <h5 className="local-text-time">LOCAL TIME</h5>
                       <div
-                        className={` time-box ${trading ? "green-text" : "red-text"} `}
+                        className={` time-box ${!trading ? "red-text" : "green-text"} `}
                       >
                         {SecStateLocal}
                       </div>
