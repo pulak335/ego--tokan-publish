@@ -14,27 +14,32 @@ const Header = () => {
 
     let date = new Date()
 
-    const days = date.getDay()
+    const days = date.getDay().toLocaleString('en-US', {
+        timeZone: 'America/New_York',
+    })
 
     useEffect(() => {
-        if (days !== 6 || days !== 7) {
-            setTrading('Close')
-        }
-        else {
-            setInterval(() => {
-                let date = new Date()
-                let Hours = date.getHours()
-                console.log(Hours)
+        // if (days == 1 || days == 7) {
+        //     setTrading('Close')
+        // }
+        // else {
+        setInterval(() => {
+            let date = new Date()
+            let Hours = date.toLocaleString('en-US', {
+                timeZone: 'America/New_York',
+                hour: '2-digit',
+                hour12: false
+            })
 
-                if (Hours >= 9 && Hours < 18) {
-                    setTrading('Open')
-                }
-                else {
-                    setTrading('Close')
-                }
+            if (Hours >= 9 && Hours < 16) {
+                setTrading('Open')
+            }
+            else {
+                setTrading('Close')
+            }
 
-            }, 1000);
-        }
+        }, 1000);
+        // }
     }, []);
 
     useEffect(() => {

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import "./Breakdown.css";
 import AOS from "aos";
@@ -12,10 +13,11 @@ import Chartgraph from "../../common/Chartgraph";
 
 const Breakdown = () => {
 
-  const [trading, setTrading] = useState();
+  const [trading, setTrading] = useState(false);
 
   const [SecState, setSecState] = useState(null);
   const [SecStateLocal, setSecStateLocal] = useState(null);
+  
 
   useEffect(() => {
     setInterval(() => {
@@ -33,20 +35,28 @@ const Breakdown = () => {
       }));
 
 
-      let Hours = date.getHours()
-      let days = date.getDay()
+      let Hours = date.toLocaleString('en-US', {
+        timeZone: 'America/New_York',
+        hour: '2-digit',
+        hour12: false
+      })
 
-      if (days == 6 || days == 7) {
-        setTrading(false)
-      }
-      else {
-      if (Hours >= 9 && Hours < 17) {
+      console.log(Hours)
+      // let days = date.getDay().toLocaleTimeString('en-US', {
+      //   timeZone: 'America/New_York',
+      // })
+
+      // if (days == 5 || days == 7) {
+      //   setTrading(false)
+      // }
+      // else {
+      if (Hours >= 9 && Hours < 16) {
         setTrading(true)
       }
       else {
         setTrading(false)
       }
-      }
+      // }
     }, 1000);
 
   }, []);
