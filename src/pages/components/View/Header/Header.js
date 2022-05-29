@@ -1,46 +1,49 @@
 import React, { useEffect, useState } from 'react';
 import Navber from '../../common/Navber';
 import './Header.css';
-// import Clock from '../../common/Clock';
-
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-// import bdd from "../../../../assets/bg-imgae/bd.png"
 
 
 
 const Header = () => {
-    const [trading, setTrading] = useState('')
+    const [trading, setTrading] = useState('Close')
 
-    let date = new Date()
 
-    const days = date.getDay().toLocaleString('en-US', {
-        timeZone: 'America/New_York',
-    })
+
 
     useEffect(() => {
-        // if (days == 1 || days == 7) {
-        //     setTrading('Close')
-        // }
-        // else {
         setInterval(() => {
+
             let date = new Date()
+
             let Hours = date.toLocaleString('en-US', {
                 timeZone: 'America/New_York',
                 hour: '2-digit',
                 hour12: false
             })
 
-            if (Hours >= 9 && Hours < 16) {
-                setTrading('Open')
+            let days = date.toLocaleString('en-US', {
+                timeZone: 'America/New_York',
+                weekday: 'long',
+                hour12: false
+            })
+
+            if (days == "Sunday" || days == "Saturday") {
+                    setTrading('Close')
             }
             else {
-                setTrading('Close')
-            }
-
-        }, 1000);
-        // }
+                    if (Hours >= 3 && Hours < 16) {
+                        setTrading('Open')
+                    }
+                    else {
+                        setTrading('Close')
+                    }
+                    }
+                }, 1000);
     }, []);
+
+
 
     useEffect(() => {
 

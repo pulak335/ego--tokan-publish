@@ -41,22 +41,23 @@ const Breakdown = () => {
         hour12: false
       })
 
-      console.log(Hours)
-      // let days = date.getDay().toLocaleTimeString('en-US', {
-      //   timeZone: 'America/New_York',
-      // })
+      let days = date.toLocaleString('en-US', {
+        timeZone: 'America/New_York',
+        weekday: 'long',
+        hour12: false
+      })
 
-      // if (days == 5 || days == 7) {
-      //   setTrading(false)
-      // }
-      // else {
+      if (days == "Sunday" || days == "Saturday") {
+        setTrading(false)
+      }
+      else {
       if (Hours >= 9 && Hours < 16) {
         setTrading(true)
       }
       else {
         setTrading(false)
       }
-      // }
+      }
     }, 1000);
 
   }, []);
@@ -86,7 +87,7 @@ const Breakdown = () => {
 
 
               {
-                [{ id: 1, name: 'Supply', img: Treding1, ammount: '1, 000, 000, 000' }, { id: 2, name: 'Max Wallet', img: Treding2, ammount: '25,000,000' }, { id: 3, name: 'Max Buy', img: Treding3, ammount: '10,000,000' }, { id: 4, name: 'Max Sell', img: Treding4, ammount: '5,000,000' }, { id: 5, name: 'Cool Down', img: Treding5, ammount: '60 Seconds' }].map(i => <div className="icon-box col-xl col-lg-3 col-md-4 col-sm-6 col-12">
+                [{ id: 1, name: 'Supply', img: Treding1, ammount: '1, 000, 000, 000' }, { id: 2, name: 'Max Wallet', img: Treding2, ammount: '25,000,000' }, { id: 3, name: 'Max Buy', img: Treding3, ammount: '10,000,000' }, { id: 4, name: 'Max Sell', img: Treding4, ammount: '5,000,000' }, { id: 5, name: 'Cool Down', img: Treding5, ammount: '60 Seconds' }].map((i,index) => <div key={index} className="icon-box col-xl col-lg-3 col-md-4 col-sm-6 col-12">
                   <div className="img text-center">
                     <img src={i.img} alt="" srcSet="" />
                   </div>

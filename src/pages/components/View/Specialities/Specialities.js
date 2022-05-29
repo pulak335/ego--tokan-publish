@@ -1,8 +1,5 @@
 import React,{useEffect} from 'react';
 import './Specialities.css';
-
-// /import images 
-
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
