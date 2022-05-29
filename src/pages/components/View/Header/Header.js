@@ -33,12 +33,7 @@ const Header = () => {
                     setTrading('Close')
             }
             else {
-                    if (Hours >= 3 && Hours < 16) {
-                        setTrading('Open')
-                    }
-                    else {
-                        setTrading('Close')
-                    }
+                    (Hours >= 3 && Hours < 16) ? setTrading('Open') : setTrading('Close')
                     }
                 }, 1000);
     }, []);

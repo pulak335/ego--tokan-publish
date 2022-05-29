@@ -51,12 +51,7 @@ const Breakdown = () => {
         setTrading(false)
       }
       else {
-      if (Hours >= 9 && Hours < 16) {
-        setTrading(true)
-      }
-      else {
-        setTrading(false)
-      }
+       (Hours >= 9 && Hours < 16) ? setTrading(true) : setTrading(false)
       }
     }, 1000);
 
